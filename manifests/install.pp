@@ -50,7 +50,7 @@ class fedora_commons::install inherits fedora_commons {
 
   exec { 'fedora_commons_download':
 
-    command => "/usr/bin/env wget ${fedora_commons::download_url} -O /tmp/fcrepo-installer-3.8.0.jar",
+    command => "/usr/bin/env wget \"${fedora_commons::download_url}\" -O /tmp/fcrepo-installer-3.8.0.jar",
     unless => '/usr/bin/env stat /tmp/fcrepo-installer-3.8.0.jar',
     timeout => 0
   }
