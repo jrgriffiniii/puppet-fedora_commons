@@ -59,7 +59,7 @@ class fedora_commons::install inherits fedora_commons {
     ensure => 'directory'
   }
 
-  file { "${fedora_commons}/install/install.properties":
+  file { "${fedora_commons::home}/install/install.properties":
 
     content => template('fedora_commons/install.properties.erb'),
     require => File["${fedora_commons::home}/install"]
