@@ -1,14 +1,22 @@
 {
-  "name": "puppet-fedora_commons",
-  "version": "0.0.1",
-  "author": "griffinj@lafayette.edu",
-  "license": "GPLv2",
-  "summary": "A Puppet Module for Fedora Commons",
-  "source": "https://github.com/jrgriffiniii/puppet-fedora_commons",
-  "project_page": "https://github.com/jrgriffiniii/puppet-fedora_commons",
-  "issues_url": "https://github.com/jrgriffiniii/puppet-fedora_commons/issues",
-  "tags": ["fedora commons", "fcrepo", "repository", "preservation"],
-  "dependencies": [
-    { "name": "puppetlabs/postgresql", "version_requirement": "4.1.x" },
-  ]
+    "name": "puppet-fedora_commons",
+    "version": "0.0.1",
+    "author": "griffinj@lafayette.edu",
+    "license": "GPLv2",
+    "summary": "A Puppet Module for Fedora Commons",
+    "source": "https://github.com/jrgriffiniii/puppet-fedora_commons",
+    "project_page": "https://github.com/jrgriffiniii/puppet-fedora_commons",
+    "issues_url": "https://github.com/jrgriffiniii/puppet-fedora_commons/issues",
+    "tags": [
+        "fedora commons",
+        "fcrepo",
+        "repository",
+        "preservation"
+    ],
+    "dependencies": [
+        {
+            "name": "puppetlabs/postgresql",
+            "version_requirement": "4.1.x"
+        }
+    ]
 }
