@@ -67,14 +67,14 @@ class fedora_commons::install inherits fedora_commons {
 
   exec { 'fedora_commons_install':
 
-    command => "/usr/bin/env java ${fedoragsearch::download_url} -O /tmp/fcrepo-installer-3.8.0.jar ${fedora_commons}/install/install.properties",
+    command => "/usr/bin/env java ${fedoragsearch::download_url} -O /tmp/fcrepo-installer-3.8.0.jar ${fedora_commons::home}/install/install.properties",
     unless => "/usr/bin/env stat ${fedoragsearch::home}",
-    require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["${fedora_commons}/install/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
+    require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["${fedora_commons::home}/install/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
   }
 
   exec { 'fedoragsearch_deploy':
 
-    command => "/usr/bin/env cp ${fedora_commons}/install/fedora.war ${servlet_webapps_dir_path}",
+    command => "/usr/bin/env cp ${fedora_commons::home}/install/fedora.war ${servlet_webapps_dir_path}",
     unless => "/usr/bin/env stat ${servlet_webapps_dir_path}/fedora.war",
     require => Exec['fedora_commons_install']
   }
