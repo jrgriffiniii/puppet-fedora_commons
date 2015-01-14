@@ -1,29 +1,34 @@
-Installation type - custom
-home directory - <%= @home %>
-Password - <%= @user_pass %>
-server host - <%= @host %>
-app server context - <%= @servlet_context %>
-API-A - <%= @auth_api_a %>
-ssl avail - <%= @ssl %>
-ssl required for api-a - <%= @ssl_api_a %>
-ssl required for api-m - <%= @ssl_api_m %>
-servlet included - <%= @fedora_servlet_engine %>
-tomcat home - <%= @fedora_servlet_home %>
-tomcat http port - <%= @fedora_servlet_http_port %>
-tomcat shutdown - <%= @fedora_servlet_shutdown_port %>
-tomcat ssl - <%= @fedora_servlet_https_port %>
-keystore file - <%= @fedora_servlet_keystore_path %>
-databse - <%= @database_type %>
-postgresql driver - <%= @database_jdbc_driver_path %>
-database username - <%= @database_user %>
-database password - <%= @database_pass %>
-jdbc url - <%= @database_jdbc_url %>
-jdbc class - <%= @database_jdbc_class %>
-Enable FESL authn - <%= @upstream_http_auth %>
-Enable FESL authz - <%= @fesl_authz %>
-policy enforcement - <%= @xacml_enforced %>
-low level storage - <%= @low_level_storage %>
-resource index - <%= @resource_index %>
-messaging - <%= @messaging %>
-messaging provider - <%= @messaging_provider %>
-deploy local services - <%= @local_services %>
+keystore.file=<%= @fedora_servlet_keystore_path %>
+ri.enabled=<%= @resource_index %>
+messaging.enabled=<%= @messaging %>
+apia.auth.required=<%= @auth_api_a %>
+database.jdbcDriverClass=<%= @database_jdbc_class %>
+database.postgresql.jdbcDriverClass=<%= @database_jdbc_class %>
+upstream.auth.enabled=<%= @upstream_http_auth %>
+tomcat.ssl.port=<%= @fedora_servlet_https_port %>
+ssl.available=<%= @ssl %>
+database.jdbcURL=jdbc\:postgresql\://localhost/fedora3
+messaging.uri=vm\:(broker\:(tcp\://localhost\:61616))
+database.password=<%= @database_pass %>
+keystore.type=<%= @fedora_servlet_keystore_type %>
+database.username=<%= @database_user %>
+fesl.authz.enabled=<%= @fesl_authz %>
+tomcat.shutdown.port=<%= @fedora_servlet_shutdown_port %>
+deploy.local.services=<%= @local_services %>
+database.postgresql.driver=<%= @database_jdbc_driver_path %>
+xacml.enabled=<%= @xacml_enforced %>
+tomcat.http.port=<%= @fedora_servlet_http_port %>
+fedora.serverHost=<%= @host %>
+database=<%= @database_type %>
+database.driver=included
+fedora.serverContext=<%= @servlet_context %>
+keystore.password=<%= @fedora_servlet_keystore_pass %>
+llstore.type=<%= @low_level_storage %>
+tomcat.home=<%= @fedora_servlet_home %>
+fedora.home=<%= @home %>
+install.type=custom
+database.postgresql.jdbcURL=jdbc\:postgresql\://localhost/fedora3
+servlet.engine=<%= @fedora_servlet_engine %>
+apim.ssl.required=<%= @ssl_api_m %>
+fedora.admin.pass=<%= @user_pass %>
+apia.ssl.required=<%= @ssl_api_a %>

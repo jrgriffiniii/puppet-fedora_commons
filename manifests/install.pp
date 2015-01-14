@@ -54,7 +54,7 @@ class fedora_commons::install inherits fedora_commons {
     unless => '/usr/bin/env stat /tmp/fcrepo-installer-3.8.0.jar'
   }
 
-  file { $fedora_commons::home:
+  file { [ $fedora_commons::home, "${fedora_commons::home}/install" ]:
 
     ensure => 'directory'
   }
@@ -62,7 +62,7 @@ class fedora_commons::install inherits fedora_commons {
   file { "${fedora_commons}/install/install.properties":
 
     content => template('fedora_commons/install.properties.erb'),
-    require => File[$fedora_commons::home]
+    require => File["${fedora_commons::home}/install"]
   }
 
   exec { 'fedora_commons_install':
