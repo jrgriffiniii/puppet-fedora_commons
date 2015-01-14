@@ -46,8 +46,6 @@ class fedora_commons::params {
   $messaging_provider = 'default'
   $local_services = true
   
-  # $fedora_repo_name = 'fgsAdmin'
-  $version = '3.8.0'
   $home = '/usr/local/fedora'
   $fedora_users = "${home}/server/config/fedora-users.xml"
 
@@ -57,6 +55,4 @@ class fedora_commons::params {
   $servlet_host = 'localhost'
   $servlet_port = '8080'
   
-
-
 }
