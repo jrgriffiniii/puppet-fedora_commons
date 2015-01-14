@@ -67,6 +67,13 @@ class fedora_commons::install inherits fedora_commons {
     require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["/tmp/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
   }
 
+  # @todo Resolve
+  # An exception by Tomcat is logged if /var/lib/tomcat/webapps/fedora is not created (after deploying fedora.war)
+  file { "${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}":
+
+    ensure => 'directory'
+  }
+
   # The following *must* be inserted into the Tomcat server.xml Document if a keystore is being used!
   #
   # <Connector minSpareThreads="25" maxSpareThreads="75" acceptCount="100" scheme="https" secure="true" SSLEnabled="true" port="8443" enableLookups="true" keystoreFile="conf/keystore" URIEncoding="UTF-8"/>
@@ -75,7 +82,7 @@ class fedora_commons::install inherits fedora_commons {
 
     command => "/usr/bin/env cp ${fedora_commons::home}/install/fedora.war ${servlet_webapps_dir_path}",
     unless => "/usr/bin/env stat ${servlet_webapps_dir_path}/fedora.war",
-    require => Exec['fedora_commons_install']
+    require => [ File["${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}"], Exec['fedora_commons_install'] ]
   }
   
 }
