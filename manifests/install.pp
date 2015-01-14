@@ -56,7 +56,7 @@ class fedora_commons::install inherits fedora_commons {
 
   file { $fedora_commons::home:
 
-    directory => true
+    ensure => 'directory'
   }
 
   file { "${fedora_commons}/install/install.properties":
