@@ -69,7 +69,7 @@ class fedora_commons::install inherits fedora_commons {
   exec { 'fedora_commons_install':
 
     command => "/usr/bin/env java ${fedora_commons::download_url} -O /tmp/fcrepo-installer-3.8.0.jar ${fedora_commons::home}/install/install.properties",
-    unless => "/usr/bin/env stat ${fedora_commons::home}",
+    unless => "/usr/bin/env stat ${fedora_commons::home}/install/fedora.war",
     require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["${fedora_commons::home}/install/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
   }
 
