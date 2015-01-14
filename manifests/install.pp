@@ -69,9 +69,13 @@ class fedora_commons::install inherits fedora_commons {
 
   # @todo Resolve
   # An exception by Tomcat is logged if /var/lib/tomcat/webapps/fedora is not created (after deploying fedora.war)
-  file { "${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}":
+  # Further, ensure that the directories are owned by the system servlet user and group
+  file { [ "${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}", $fedora_commons::home ]:
 
-    ensure => 'directory'
+    ensure => 'directory',
+    recurse => true,
+    owner => $fedora_commons::servlet_user,
+    group => $fedora_commons::servlet_group
   }
 
   # The following *must* be inserted into the Tomcat server.xml Document if a keystore is being used!
@@ -80,9 +84,9 @@ class fedora_commons::install inherits fedora_commons {
 
   exec { 'fedora_commons_deploy':
 
-    command => "/usr/bin/env cp ${fedora_commons::home}/install/fedora.war ${servlet_webapps_dir_path}",
-    unless => "/usr/bin/env stat ${servlet_webapps_dir_path}/fedora.war",
-    require => [ File["${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}"], Exec['fedora_commons_install'] ]
+    command => "/usr/bin/env cp ${fedora_commons::home}/install/fedora.war ${fedora_commons::servlet_webapps_dir_path}",
+    unless => "/usr/bin/env stat ${fedora_commons::servlet_webapps_dir_path}/fedora.war",
+    require => [ File["${fedora_commons::servlet_webapps_dir_path}/${fedora_commons::servlet_context}", $fedora_commons::home], Exec['fedora_commons_install'] ]
   }
   
 }

@@ -54,5 +54,7 @@ class fedora_commons::params {
   $servlet_context_dir_path = '/etc/tomcat/Catalina/localhost'
   $servlet_host = 'localhost'
   $servlet_port = '8080'
+  $servlet_user = 'tomcat'
+  $servlet_group = 'tomcat'
   
 }
