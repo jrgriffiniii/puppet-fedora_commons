@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "author": "griffinj@lafayette.edu",
     "license": "GPLv2",
-    "summary": "A Puppet Module for Fedora Commons",
+    "summary": "A Puppet Module for managing Fedora Commons",
     "source": "https://github.com/jrgriffiniii/puppet-fedora_commons",
     "project_page": "https://github.com/jrgriffiniii/puppet-fedora_commons",
     "issues_url": "https://github.com/jrgriffiniii/puppet-fedora_commons/issues",
