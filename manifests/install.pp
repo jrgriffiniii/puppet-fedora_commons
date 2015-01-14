@@ -55,23 +55,21 @@ class fedora_commons::install inherits fedora_commons {
     timeout => 0
   }
 
-  file { [ $fedora_commons::home, "${fedora_commons::home}/install" ]:
+  file { "/tmp/install.properties":
 
-    ensure => 'directory'
-  }
-
-  file { "${fedora_commons::home}/install/install.properties":
-
-    content => template('fedora_commons/install.properties.erb'),
-    require => File["${fedora_commons::home}/install"]
+    content => template('fedora_commons/install.properties.erb')
   }
 
   exec { 'fedora_commons_install':
 
-    command => "/usr/bin/env java ${fedora_commons::download_url} -O /tmp/fcrepo-installer-3.8.0.jar ${fedora_commons::home}/install/install.properties",
+    command => "/usr/bin/env java -jar /tmp/fcrepo-installer-3.8.0.jar /tmp/install.properties",
     unless => "/usr/bin/env stat ${fedora_commons::home}/install/fedora.war",
-    require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["${fedora_commons::home}/install/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
+    require => [ Exec['fedora_commons_set_env', 'fedora_commons_download' ], File["/tmp/install.properties"], Postgresql::Server::Db[$fedora_commons::database] ]
   }
+
+  # The following *must* be inserted into the Tomcat server.xml Document if a keystore is being used!
+  #
+  # <Connector minSpareThreads="25" maxSpareThreads="75" acceptCount="100" scheme="https" secure="true" SSLEnabled="true" port="8443" enableLookups="true" keystoreFile="conf/keystore" URIEncoding="UTF-8"/>
 
   exec { 'fedora_commons_deploy':
 
